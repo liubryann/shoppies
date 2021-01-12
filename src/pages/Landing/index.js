@@ -8,7 +8,8 @@ import {
 
 const useStyles = makeStyles((theme) => ({
     background: {
-        backgroundColor: theme.palette.primary.main
+        backgroundColor: theme.palette.primary.light,
+        height: '100vh'
     }
 }));
 
@@ -16,12 +17,10 @@ function Landing() {
     const classes = useStyles(); 
 
     return (
-        <div>
-            <Container className={classes.background} maxWidth="md">
+            <Container disableGutters className={classes.background} maxWidth="md">
                 <Header/>
                 <MovieResults/>
             </Container>
-        </div>
     )
 }
 

@@ -5,16 +5,33 @@ import {
     Grid,
     Typography,
     TextField,
-    makeStyles
+    makeStyles,
+    IconButton,
+    InputAdornment,
 } from '@material-ui/core';
+
+import SearchIcon from '@material-ui/icons/Search';
 
 import movieDuck from '../../app/modular/movie';
 
 const useStyles = makeStyles((theme) => ({
     header: {
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.dark,
         height: '70px',
+        paddingRight: theme.spacing(3),
+        paddingLeft: theme.spacing(3)
+    },
+    title: {
+        color: theme.palette.primary.light,
+        fontWeight: 'bold'
+    },
+    label: {
+        color: theme.palette.primary.main
+    },
+    input: {
+        color: theme.palette.primary.main
     }
+    
 }));
 
 function Header({ getMoviesByTitle }) {
@@ -29,7 +46,6 @@ function Header({ getMoviesByTitle }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         getMoviesByTitle(movie);
-        
     }
 
     return (
@@ -42,7 +58,7 @@ function Header({ getMoviesByTitle }) {
                             className={classes.header}  
                         >
                             <Grid item xs={4} sm={6}>
-                                <Typography variant="h6">
+                                <Typography variant="h6" className={classes.title}>
                                     Shoppies
                                 </Typography>
                             </Grid>
@@ -52,12 +68,24 @@ function Header({ getMoviesByTitle }) {
                                         variant="outlined" 
                                         label="Movie title"
                                         size="small"
-                                        color="secondary"
+                                        color="primary"
                                         fullWidth
                                         value={movie}
                                         onChange={handleChange}
+                                        InputLabelProps={{
+                                            className: classes.label
+                                        }}
+                                        InputProps={{
+                                            className: classes.input,
+                                            endAdornment: (
+                                                <InputAdornment>
+                                                    <IconButton type="submit" disableRipple color="primary">
+                                                        <SearchIcon />
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            )
+                                        }}
                                     />
-                                    <button type="submit" style={{ display: 'none' }}></button>
                                  </form>
                             </Grid>
                         </Grid>
