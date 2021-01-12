@@ -1,26 +1,17 @@
-import React from 'react'
+import React from 'react';
 import {
     Grid,
     Typography,
     Button,
-    makeStyles
 } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        height: '45px',
-    }
-}));
-
-function MovieCard({ onClick, buttonText, movie }) {
-    const classes = useStyles();
-
+function MovieCard({ handleOnClick, buttonText, movie, disabled }) {
     return (
         <Grid 
             container
             justify="space-between"
             alignItems="center" 
-            className={classes.root}
+            style={{ height:'45px' }}
             wrap="nowrap"
         >
             <Grid item xs zeroMinWidth style={{ maxWidth: '100%' }}>
@@ -29,7 +20,14 @@ function MovieCard({ onClick, buttonText, movie }) {
                 </Typography>
             </Grid>
             <Grid item>
-                <Button variant="contained" size="small" disableElevation>
+                <Button 
+                    variant="contained"
+                    size="small" 
+                    disableElevation
+                    onClick={() => handleOnClick(movie)}
+                    style={{ width: '90px' }}
+                    disabled={disabled}
+                >
                     {buttonText}
                 </Button>
             </Grid>
@@ -37,4 +35,4 @@ function MovieCard({ onClick, buttonText, movie }) {
     )
 }
 
-export default MovieCard
+export default MovieCard;

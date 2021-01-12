@@ -14,15 +14,36 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function MovieResults({ movieResults, title }) {
+function MovieResults({ movieResults, title, nominateMovie, nominations }) {
     const classes = useStyles();
+
+    const handleOnClick = (movie) => {
+        nominateMovie(movie);
+    }
+
+    const isNominated = (title) => {
+        for (var i = 0; i < nominations.length; i++) {
+            if (nominations[i].Title === title) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     return (
         <Paper elevation={0} square className={classes.root}>
             <Typography variant="h6" style={{ fontWeight: 'bold' }}>
                 {"Search results for \"" + title + "\""}
             </Typography>
-            { movieResults && movieResults.map((movie, i) => (<MovieCard key={i} movie={movie} buttonText="Nominate"/>))}
+            { movieResults && movieResults.map((movie, i) => (
+                <MovieCard 
+                    key={i} 
+                    movie={movie} 
+                    buttonText="Nominate" 
+                    handleOnClick={handleOnClick} 
+                    disabled={isNominated(movie.Title)}
+                />
+            ))}
         </Paper>
     )
 }
@@ -30,6 +51,11 @@ function MovieResults({ movieResults, title }) {
 const mapStateToProps = (state) => ({
     movieResults:  movieDuck.selectors.movieResults(state),
     title: movieDuck.selectors.title(state),
+    nominations: movieDuck.selectors.nominations(state),
 });
 
-export default connect(mapStateToProps, null)(MovieResults);
+const mapDispatchToProps = {
+    nominateMovie: movieDuck.actions.nominateMovie
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieResults);

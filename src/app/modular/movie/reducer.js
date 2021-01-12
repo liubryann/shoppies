@@ -3,7 +3,8 @@ import * as types from './types';
 
 const initalState = {
   movieResults: null,
-  title: null
+  title: null,
+  nominations: []
 };
 
 const reducer = produce((state, action) => {
@@ -13,6 +14,10 @@ const reducer = produce((state, action) => {
       break;
     case types.SAVE_TITLE: 
       state.title = action.payload.title
+      break; 
+    case types.NOMINATE_MOVIE:
+      state.nominations = [action.payload.movie, ...state.nominations]
+      break;
     default:
       break;
   }

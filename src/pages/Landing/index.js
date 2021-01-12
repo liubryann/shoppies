@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../../components/Header';
 import MovieResults from '../../components/MovieResults';
+import Nominations from '../../components/Nominations';
 import {
     Container,
     Grid,
@@ -29,9 +30,9 @@ function Landing() {
                         <MovieResults/>
                     </Grid>
                     <Grid item>
+                        <Nominations/>
                     </Grid>
                 </Grid>
-           
             </Container>
         </div>
     )
