@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     input: {
         color: theme.palette.primary.main
     }
-    
 }));
 
 function Header({ getMoviesByTitle }) {

@@ -6,6 +6,7 @@ import moviesService from '../../../services/moviesService';
 export function* getMoviesByTitle({ payload }) {
     const movies = yield call(moviesService.getMoviesByTitle, payload.title);
     yield put(actions.saveMovies(movies));
+    yield put(actions.saveTitle(payload.title));
 }
 
 export function* watchGetMoviesByTitleAsync() {
