@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../../components/Header';
+import MovieResults from '../../components/MovieResults';
 import {
     Container,
     makeStyles
@@ -18,6 +19,7 @@ function Landing() {
         <div>
             <Container className={classes.background} maxWidth="md">
                 <Header/>
+                <MovieResults/>
             </Container>
         </div>
     )
