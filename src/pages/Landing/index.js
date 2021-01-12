@@ -24,8 +24,8 @@ function Landing() {
         <div className={classes.background}>
             <Container disableGutters  maxWidth="md">
                 <Header/>
-                <Grid container spacing={3} direction="column">
-                    <Grid item>
+                <Grid container direction="column">
+                    <Grid item style={{ maxWidth: '100%' }}>
                         <MovieResults/>
                     </Grid>
                     <Grid item>

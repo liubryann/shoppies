@@ -16,10 +16,16 @@ function MovieCard({ onClick, buttonText, movie }) {
     const classes = useStyles();
 
     return (
-        <Grid container justify="space-between" alignItems="center" className={classes.root}>
-            <Grid item>
-                <Typography>
-                    {movie.Title + ' (' + movie.Year + ')' }
+        <Grid 
+            container
+            justify="space-between"
+            alignItems="center" 
+            className={classes.root}
+            wrap="nowrap"
+        >
+            <Grid item xs zeroMinWidth style={{ maxWidth: '100%' }}>
+                <Typography noWrap>
+                    {movie.Title + ' (' + movie.Year + ')'}
                 </Typography>
             </Grid>
             <Grid item>
