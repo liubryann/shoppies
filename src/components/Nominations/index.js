@@ -14,9 +14,14 @@ const useStyles = makeStyles((theme) => ({
     root: {
         padding: theme.spacing(3),
     },
+    title: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    }
 }));
 
-function Nominations({ nominations, removeNomination, open, handleClose }) {
+function Nominations({ nominations, removeNomination, open, handleClose, error }) {
     const classes = useStyles();
 
     const handleOnClick = (movie) => {
@@ -26,9 +31,12 @@ function Nominations({ nominations, removeNomination, open, handleClose }) {
     return (
         <Dialog open={open} onClose={handleClose}>
             <Paper elevation={0} square className={classes.root}>
-                <Typography variant="h6" style={{ fontWeight: 'bold' }}>
-                    {"Nominations"}
-                </Typography>
+                <div className={classes.title}>
+                    <Typography variant="h6" style={{ fontWeight: 'bold' }}>
+                        {"Nominations"}
+                    </Typography>
+                    { error && <Typography color="error">Max 5 nominations</Typography>}
+                </div>
                 { nominations.length !== 0 ? (nominations.map((nomination, i) => (
                     <MovieCard
                         key={i} 

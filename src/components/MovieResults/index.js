@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import {
     Paper,
@@ -6,6 +6,7 @@ import {
     makeStyles
 } from '@material-ui/core';
 import MovieCard from '../MovieCard';
+import Nominations from '../Nominations';
 import movieDuck from '../../app/modular/movie';
 
 const useStyles = makeStyles((theme) => ({
@@ -18,8 +19,15 @@ const useStyles = makeStyles((theme) => ({
 function MovieResults({ movieResults, title, nominateMovie, nominations }) {
     const classes = useStyles();
 
+    const [openNominations, setOpenNominations] = useState(false);
+
     const handleOnClick = (movie) => {
-        nominateMovie(movie);
+        if (nominations.length === 5) {
+            setOpenNominations(true);
+        }
+        else {
+            nominateMovie(movie);
+        }
     }
 
     const isNominated = (title) => {
@@ -31,8 +39,13 @@ function MovieResults({ movieResults, title, nominateMovie, nominations }) {
         return false;
     }
 
+    const handleClose = () => {
+        setOpenNominations(false);
+    }
+
     return (
         <Paper elevation={0} square className={classes.root}>
+            <Nominations open={openNominations} handleClose={handleClose} error={true} />
             <Typography variant="h6" style={{ fontWeight: 'bold' }}>
                 { title ? "Search results for \"" + title + "\"" : 'Search results' }
             </Typography>
