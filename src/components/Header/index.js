@@ -8,9 +8,13 @@ import {
     makeStyles,
     IconButton,
     InputAdornment,
+    Tooltip
 } from '@material-ui/core';
 
 import SearchIcon from '@material-ui/icons/Search';
+import ListIcon from '@material-ui/icons/List';
+
+import Nominations from '../Nominations';
 
 import movieDuck from '../../app/modular/movie';
 
@@ -37,6 +41,7 @@ function Header({ getMoviesByTitle }) {
     const classes = useStyles();
 
     const [movie, setMovie] = useState('');
+    const [openNominations, setOpenNominations] = useState(false);
 
     const handleChange = (e) => {
             setMovie(e.target.value);
@@ -47,21 +52,30 @@ function Header({ getMoviesByTitle }) {
         getMoviesByTitle(movie);
     }
 
+    const handleOnClick = () => {
+        setOpenNominations(true);
+    }
+
+    const handleClose = () => {
+        setOpenNominations(false);
+    }
+
     return (
         <header>
                 <CssBaseline>
+                        <Nominations open={openNominations} handleClose={handleClose}/>
                         <Grid 
                             container 
                             justify="space-between" 
                             alignItems="center" 
                             className={classes.header}  
                         >
-                            <Grid item xs={4} sm={6}>
+                            <Grid item xs={4} sm={5}>
                                 <Typography variant="h6" className={classes.title}>
                                     Shoppies
                                 </Typography>
                             </Grid>
-                            <Grid item xs={8} sm={6}>
+                            <Grid item xs={7} sm={6}>
                                 <form onSubmit={handleSubmit} id="movie-search-id">
                                     <TextField 
                                         variant="outlined" 
@@ -86,6 +100,13 @@ function Header({ getMoviesByTitle }) {
                                         }}
                                     />
                                  </form>
+                            </Grid>
+                            <Grid item xs={1} sm={1} >
+                                <Tooltip title="Nominations">
+                                    <IconButton onClick={handleOnClick} color="primary">
+                                        <ListIcon/>
+                                    </IconButton>
+                                </Tooltip>
                             </Grid>
                         </Grid>
                 </CssBaseline>

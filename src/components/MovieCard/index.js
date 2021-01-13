@@ -11,7 +11,7 @@ function MovieCard({ handleOnClick, buttonText, movie, disabled }) {
             container
             justify="space-between"
             alignItems="center" 
-            style={{ height:'45px' }}
+            style={{ height:'55px' }}
             wrap="nowrap"
             spacing={2}
         >

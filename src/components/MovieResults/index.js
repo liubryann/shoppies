@@ -11,6 +11,7 @@ import movieDuck from '../../app/modular/movie';
 const useStyles = makeStyles((theme) => ({
     root: {
         padding: theme.spacing(3),
+        height: '100%'
     },
 }));
 

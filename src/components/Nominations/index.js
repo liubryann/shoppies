@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import {
     Paper,
     Typography,
-    makeStyles
+    makeStyles,
+    Dialog,
 } from '@material-ui/core';
 import MovieCard from '../MovieCard'; 
-import Banner from '../Banner';
 
 import movieDuck from '../../app/modular/movie';
 
@@ -16,39 +16,28 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function Nominations({ nominations, removeNomination }) {
+function Nominations({ nominations, removeNomination, open, handleClose }) {
     const classes = useStyles();
-
-    const [open, setOpen] = useState(false);
 
     const handleOnClick = (movie) => {
         removeNomination(movie);
     }   
 
-    const handleClose = () => {
-        setOpen(false);
-    }
-
-    useEffect(() => {
-        if (nominations.length === 5) {
-            setOpen(true);
-        }
-    }, [nominations.length])
-
     return (
-        <Paper elevation={0} square className={classes.root}>
-            <Banner open={open} handleClose={handleClose} />
-            <Typography variant="h6" style={{ fontWeight: 'bold' }}>
-                {"Nominations"}
-            </Typography>
-            { nominations && nominations.map((nomination, i) => (
-                <MovieCard
-                    key={i} 
-                    handleOnClick={handleOnClick} 
-                    buttonText="Remove" 
-                    movie={nomination} 
-                />))}
-        </Paper>
+        <Dialog open={open} onClose={handleClose}>
+            <Paper elevation={0} square className={classes.root}>
+                <Typography variant="h6" style={{ fontWeight: 'bold' }}>
+                    {"Nominations"}
+                </Typography>
+                { nominations.length !== 0 ? (nominations.map((nomination, i) => (
+                    <MovieCard
+                        key={i} 
+                        handleOnClick={handleOnClick} 
+                        buttonText="Remove" 
+                        movie={nomination} 
+                    />))) : (<Typography>Oops! You have no nominations.</Typography>) }
+            </Paper>
+        </Dialog>
     )
 }
 
