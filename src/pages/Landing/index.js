@@ -43,7 +43,7 @@ function Landing({ nominations }) {
             <Container disableGutters  maxWidth="md" style={{ height: '100%' }}>
                 <Grid container direction="column" style={{ height: '100%' }}>
                 <Header/>
-                <Grid item xs style={{ maxWidth: '100%' }}>
+                <Grid item xs style={{ maxWidth: '100%', overflow: 'auto' }}>
                     <MovieResults/>
                 </Grid>
                 </Grid>
