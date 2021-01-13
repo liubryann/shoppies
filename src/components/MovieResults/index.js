@@ -47,7 +47,10 @@ function MovieResults({ movieResults, title, nominateMovie, nominations }) {
         <Paper elevation={0} square className={classes.root}>
             <Nominations open={openNominations} handleClose={handleClose} error={true} />
             <Typography variant="h6" style={{ fontWeight: 'bold' }}>
-                { title ? "Search results for \"" + title + "\"" : 'Search results' }
+            { (title && movieResults) ? "Search results for \"" + title + "\""
+                : (title && !movieResults) ? "No search results for \"" + title + "\" :("
+                : "Search for a movie title"     
+            }
             </Typography>
             { movieResults && movieResults.map((movie, i) => (
                 <MovieCard 
