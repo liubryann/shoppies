@@ -30,9 +30,9 @@ function MovieResults({ movieResults, title, nominateMovie, nominations }) {
         }
     }
 
-    const isNominated = (title) => {
+    const isNominated = (id) => {
         for (var i = 0; i < nominations.length; i++) {
-            if (nominations[i].Title === title) {
+            if (nominations[i].imdbID === id) {
                 return true;
             }
         }
@@ -55,7 +55,7 @@ function MovieResults({ movieResults, title, nominateMovie, nominations }) {
                     movie={movie} 
                     buttonText="Nominate" 
                     handleOnClick={handleOnClick} 
-                    disabled={isNominated(movie.Title)}
+                    disabled={isNominated(movie.imdbID)}
                 />
             ))}
         </Paper>

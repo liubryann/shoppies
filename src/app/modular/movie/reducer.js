@@ -19,7 +19,7 @@ const reducer = produce((state, action) => {
       state.nominations = [action.payload.movie, ...state.nominations]
       break;
     case types.REMOVE_NOMINATION:
-      state.nominations = state.nominations.filter((nomination) => nomination.Title !== action.payload.movie.Title);
+      state.nominations = state.nominations.filter((nomination) => nomination.imdbID !== action.payload.movie.imdbID);
       break;
     default:
       break;
