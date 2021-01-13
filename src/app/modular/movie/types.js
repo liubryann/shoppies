@@ -5,3 +5,5 @@ export const SAVE_TITLE = 'movie/saveTitle';
 export const GET_MOVIES_BY_TITLE = 'movie/getMoviesByTitle'; 
 
 export const NOMINATE_MOVIE = 'movie/nominateMovie';
+
+export const REMOVE_NOMINATION = 'movie/removeNomination'; 

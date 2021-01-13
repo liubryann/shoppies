@@ -9,3 +9,5 @@ export const getMoviesByTitle = (title) => action(types.GET_MOVIES_BY_TITLE, { t
 
 export const nominateMovie = (movie) => action(types.NOMINATE_MOVIE, { movie });
 
+export const removeNomination = (movie) => action(types.REMOVE_NOMINATION, { movie }); 
+

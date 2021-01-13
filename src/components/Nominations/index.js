@@ -15,11 +15,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function Nominations({ nominations }) {
+function Nominations({ nominations, removeNomination }) {
     const classes = useStyles();
 
-    const handleOnClick = () => {
-
+    const handleOnClick = (movie) => {
+        removeNomination(movie);
     }   
 
     return (
@@ -27,7 +27,13 @@ function Nominations({ nominations }) {
             <Typography variant="h6" style={{ fontWeight: 'bold' }}>
                 {"Nominations"}
             </Typography>
-            { nominations && nominations.map((nomination, i) => (<MovieCard key={i} handleOnClick={handleOnClick} buttonText="Remove" movie={nomination}>{nomination}</MovieCard>))}
+            { nominations && nominations.map((nomination, i) => (
+                <MovieCard
+                    key={i} 
+                    handleOnClick={handleOnClick} 
+                    buttonText="Remove" 
+                    movie={nomination} 
+                />))}
         </Paper>
     )
 }
@@ -35,4 +41,8 @@ function Nominations({ nominations }) {
 const mapStateToProps = (state) => ({
     nominations: movieDuck.selectors.nominations(state)
 })
-export default connect(mapStateToProps, null)(Nominations);
+
+const mapDispatchToProps = {
+    removeNomination: movieDuck.actions.removeNomination
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Nominations);

@@ -29,7 +29,7 @@ function Landing() {
                     <Grid item style={{ maxWidth: '100%' }}>
                         <MovieResults/>
                     </Grid>
-                    <Grid item>
+                    <Grid item style={{ maxWidth: '100%' }}>
                         <Nominations/>
                     </Grid>
                 </Grid>
