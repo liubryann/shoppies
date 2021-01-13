@@ -13,6 +13,7 @@ function MovieCard({ handleOnClick, buttonText, movie, disabled }) {
             alignItems="center" 
             style={{ height:'45px' }}
             wrap="nowrap"
+            spacing={2}
         >
             <Grid item xs zeroMinWidth style={{ maxWidth: '100%' }}>
                 <Typography noWrap>

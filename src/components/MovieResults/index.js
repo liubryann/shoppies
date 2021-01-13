@@ -33,7 +33,7 @@ function MovieResults({ movieResults, title, nominateMovie, nominations }) {
     return (
         <Paper elevation={0} square className={classes.root}>
             <Typography variant="h6" style={{ fontWeight: 'bold' }}>
-                {"Search results for \"" + title + "\""}
+                { title ? "Search results for \"" + title + "\"" : 'Search results' }
             </Typography>
             { movieResults && movieResults.map((movie, i) => (
                 <MovieCard 

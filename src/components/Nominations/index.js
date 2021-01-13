@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
     Paper,
@@ -6,6 +6,7 @@ import {
     makeStyles
 } from '@material-ui/core';
 import MovieCard from '../MovieCard'; 
+import Banner from '../Banner';
 
 import movieDuck from '../../app/modular/movie';
 
@@ -18,12 +19,25 @@ const useStyles = makeStyles((theme) => ({
 function Nominations({ nominations, removeNomination }) {
     const classes = useStyles();
 
+    const [open, setOpen] = useState(false);
+
     const handleOnClick = (movie) => {
         removeNomination(movie);
     }   
 
+    const handleClose = () => {
+        setOpen(false);
+    }
+
+    useEffect(() => {
+        if (nominations.length === 5) {
+            setOpen(true);
+        }
+    }, [nominations.length])
+
     return (
         <Paper elevation={0} square className={classes.root}>
+            <Banner open={open} handleClose={handleClose} />
             <Typography variant="h6" style={{ fontWeight: 'bold' }}>
                 {"Nominations"}
             </Typography>
