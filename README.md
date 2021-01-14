@@ -1,5 +1,11 @@
 [Link to the project](https://serene-johnson-1ffef8.netlify.app/)
 
+My design decisions for this challenge was based on making it mobile friendly. Consumers shop a lot on their mobile devices and it is important for your Shopify store to be responsive, so feel free to try it out on your phone. Nominate 5 movies for a surprise :)
+
+
+
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
